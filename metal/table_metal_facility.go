@@ -55,7 +55,6 @@ func listFacility(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 			return nil, err
 		}
 		for _, i := range items {
-			plugin.Logger(ctx).Error("metal_facility.listFacility", "i", i, "i.URL", i.URL)
 			d.StreamListItem(ctx, i)
 		}
 		// ugh ... the Go SDK offers no way to check if we've reached the end, so we use this ugly hack
