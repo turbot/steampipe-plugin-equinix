@@ -52,7 +52,7 @@ group by
   f.code,
   f.name
 order by
-  count desc
+  num_devices desc
 ```
 
 ### List devices with OS information
