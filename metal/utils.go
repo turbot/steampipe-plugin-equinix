@@ -128,7 +128,7 @@ func sshKeysToIDs(_ context.Context, d *transform.TransformData) (interface{}, e
 }
 
 func volumesToIDs(_ context.Context, d *transform.TransformData) (interface{}, error) {
-	items := d.Value.([]metal.Volume)
+	items := d.Value.([]*metal.Volume)
 	ids := []string{}
 	for _, i := range items {
 		if i.ID != "" {
