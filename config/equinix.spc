@@ -1,5 +1,5 @@
-connection "equinix_metal" {
-  plugin = "equinix/metal"
+connection "equinix" {
+  plugin = "equinix"
 
   # API Token for your Equinix Metal account
   # See https://metal.equinix.com/developers/docs/accounts/users/#api-keys

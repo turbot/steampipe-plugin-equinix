@@ -1,6 +1,6 @@
 
 <p align="center">
-    <h1 align="center">Equinix Metal Plugin for Steampipe</h1>
+    <h1 align="center">Equinix Plugin for Steampipe</h1>
 </p>
 <p align="center">
   <a aria-label="Steampipe logo" href="https://steampipe.io">
@@ -11,43 +11,28 @@
   </a>
 </p>
 
-## DRAFT - Under active development
+## Query Equinix with SQL
 
-This plugin is under active development and not yet available on the Steampipe Hub. It can be built by:
-
-```
-git clone https://github.com/turbot/steampipe-plugin-equinix-metal.git
-cd steampipe-plugin-equinix-metal
-make
-cp config/*.spc ~/.steampipe/config
-# Set your token inside ~/.steampipe/config/equinix_metal.spc
-vi ~/.steampipe/config/equinix_metal.spc
-steampipe query
-steampipe> select * from metal_project
-```
-
-## Query Equinix Metal with SQL
-
-Use SQL to Query infrastructure including servers, networks, facilities and more from Equinix Metal. For example:
+Use SQL to query infrastructure including servers, networks, facilities and more from Equinix Metal. For example:
 
 ```sql
 select
   hostname,
   ip_addresses
 from
-  metal_device
+  equinix_metal_device
 ```
 
 Learn about [Steampipe](https://steampipe.io/).
 
 ## Get started
 
-**[Table documentation and examples &rarr;](https://hub.steampipe.io/plugins/turbot/equinix-metal)**
+**[Table documentation and examples &rarr;](https://hub.steampipe.io/plugins/turbot/equinix)**
 
 Install the plugin:
 
 ```shell
-steampipe plugin install equinix-metal
+steampipe plugin install equinix
 ```
 
 ## Get involved

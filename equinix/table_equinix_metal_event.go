@@ -1,4 +1,4 @@
-package metal
+package equinix
 
 import (
 	"context"
@@ -10,9 +10,9 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"
 )
 
-func tableMetalEvent(ctx context.Context) *plugin.Table {
+func tableEquinixMetalEvent(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
-		Name:        "metal_event",
+		Name:        "equinix_metal_event",
 		Description: "Events the user has access to.",
 		List: &plugin.ListConfig{
 			Hydrate: listEvent,
@@ -43,7 +43,7 @@ func tableMetalEvent(ctx context.Context) *plugin.Table {
 func listEvent(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_event.listEvent", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_event.listEvent", "connection_error", err)
 		return nil, err
 	}
 	maxItems := 1000
@@ -54,7 +54,7 @@ func listEvent(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 	for {
 		items, resp, err := conn.Events.List(opts)
 		if err != nil {
-			plugin.Logger(ctx).Error("metal_event.listEvent", "query_error", err, "opts", opts, "resp", resp)
+			plugin.Logger(ctx).Error("equinix_metal_event.listEvent", "query_error", err, "opts", opts, "resp", resp)
 			return nil, err
 		}
 		for _, i := range items {
@@ -72,14 +72,14 @@ func listEvent(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 func getEvent(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_event.getEvent", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_event.getEvent", "connection_error", err)
 		return nil, err
 	}
 	quals := d.KeyColumnQuals
 	id := quals["id"].GetStringValue()
 	event, resp, err := conn.Events.Get(id, nil)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_event.getEvent", "query_error", err, "id", id, "resp", resp)
+		plugin.Logger(ctx).Error("equinix_metal_event.getEvent", "query_error", err, "id", id, "resp", resp)
 		return nil, err
 	}
 	return event, nil

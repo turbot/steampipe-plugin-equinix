@@ -1,4 +1,4 @@
-package metal
+package equinix
 
 import (
 	"context"
@@ -10,9 +10,9 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"
 )
 
-func tableMetalProject(ctx context.Context) *plugin.Table {
+func tableEquinixMetalProject(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
-		Name:        "metal_project",
+		Name:        "equinix_metal_project",
 		Description: "Projects the user has access to.",
 		List: &plugin.ListConfig{
 			Hydrate: listProject,
@@ -29,7 +29,7 @@ func tableMetalProject(ctx context.Context) *plugin.Table {
 			// Other columns
 			{Name: "backend_transfer_enabled", Type: proto.ColumnType_BOOL, Description: "True if backend transfer is enabled for the project."},
 			{Name: "created_at", Type: proto.ColumnType_TIMESTAMP, Description: "When the project was created."},
-			// Use metal_devices instead
+			// Use equinix_metal_devices instead
 			// {Name: "devices", Type: proto.ColumnType_JSON, Description: "Devices in the project."},
 			{Name: "href", Type: proto.ColumnType_STRING, Description: "URL for the project."},
 			//{Name: "members", Type: proto.ColumnType_JSON, Description: "Users in the project."},
@@ -38,7 +38,7 @@ func tableMetalProject(ctx context.Context) *plugin.Table {
 			{Name: "organization_id", Type: proto.ColumnType_STRING, Transform: transform.FromField("Organization.URL").Transform(hrefToID), Description: "Organization for the project."},
 			//{Name: "payment_method", Type: proto.ColumnType_JSON, Description: "Payment method for the project."},
 			{Name: "payment_method_id", Type: proto.ColumnType_STRING, Transform: transform.FromField("PaymentMethod.URL").Transform(hrefToID), Description: "Payment method for the project."},
-			// Use metal_ssh_keys instead
+			// Use equinix_metal_ssh_keys instead
 			// {Name: "ssh_keys", Type: proto.ColumnType_JSON, Description: "SSH Keys in the project."},
 			{Name: "updated_at", Type: proto.ColumnType_TIMESTAMP, Description: "When the project was updated."},
 			// Resource columns
@@ -52,7 +52,7 @@ func tableMetalProject(ctx context.Context) *plugin.Table {
 func listProject(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_project.listProject", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_project.listProject", "connection_error", err)
 		return nil, err
 	}
 	maxItems := 1000
@@ -63,7 +63,7 @@ func listProject(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 	for {
 		items, resp, err := conn.Projects.List(opts)
 		if err != nil {
-			plugin.Logger(ctx).Error("metal_project.listProject", "query_error", err, "opts", opts, "resp", resp)
+			plugin.Logger(ctx).Error("equinix_metal_project.listProject", "query_error", err, "opts", opts, "resp", resp)
 			return nil, err
 		}
 		for _, i := range items {
@@ -81,14 +81,14 @@ func listProject(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 func getProject(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_project.getProject", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_project.getProject", "connection_error", err)
 		return nil, err
 	}
 	quals := d.KeyColumnQuals
 	id := quals["id"].GetStringValue()
 	project, resp, err := conn.Projects.Get(id, nil)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_project.getProject", "query_error", err, "id", id, "resp", resp)
+		plugin.Logger(ctx).Error("equinix_metal_project.getProject", "query_error", err, "id", id, "resp", resp)
 		return nil, err
 	}
 	return project, nil

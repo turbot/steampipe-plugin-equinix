@@ -1,4 +1,4 @@
-# Table: metal_organization
+# Table: equinix_metal_organization
 
 Organizations the authenticated user has access to.
 
@@ -10,7 +10,7 @@ Organizations the authenticated user has access to.
 select
   *
 from
-  metal_organization
+  equinix_metal_organization
 ```
 
 ### List all projects for the organization
@@ -22,9 +22,9 @@ select
   p.id as project_id,
   p.name as project_name
 from
-  metal_organization as o,
+  equinix_metal_organization as o,
   jsonb_array_elements_text(o.project_ids) as opid,
-  metal_project as p
+  equinix_metal_project as p
 where
   p.id = opid
 ```

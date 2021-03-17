@@ -1,4 +1,4 @@
-# Table: metal_operating_system
+# Table: equinix_metal_operating_system
 
 Information about operating systems offered by Equinix Metal.
 
@@ -10,7 +10,7 @@ Information about operating systems offered by Equinix Metal.
 select
   *
 from
-  metal_operating_system
+  equinix_metal_operating_system
 order by
   name
 ```
@@ -22,7 +22,7 @@ select
   distro,
   count(*)
 from
-  metal_operating_system
+  equinix_metal_operating_system
 group by
   distro
 order by
@@ -35,7 +35,7 @@ order by
 select
   *
 from
-  metal_operating_system
+  equinix_metal_operating_system
 where
   distro = 'ubuntu'
 order by
@@ -48,7 +48,7 @@ order by
 select
   *
 from
-  metal_operating_system
+  equinix_metal_operating_system
 where
   provisionable_on ? 'c3.medium.x86'
 ```
@@ -60,6 +60,6 @@ select
   slug,
   device
 from
-  metal_operating_system,
+  equinix_metal_operating_system,
   jsonb_array_elements_text(provisionable_on) as device
 ```

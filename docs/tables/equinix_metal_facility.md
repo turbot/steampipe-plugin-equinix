@@ -1,4 +1,4 @@
-# Table: metal_facility
+# Table: equinix_metal_facility
 
 Information about Equinix Metal facilities.
 
@@ -10,5 +10,5 @@ Information about Equinix Metal facilities.
 select
   *
 from
-  metal_facility
+  equinix_metal_facility
 ```

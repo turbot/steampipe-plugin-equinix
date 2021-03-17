@@ -1,4 +1,4 @@
-module github.com/equinix/steampipe-plugin-metal
+module github.com/turbot/steampipe-plugin-equinix
 
 go 1.15
 

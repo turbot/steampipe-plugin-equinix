@@ -1,4 +1,4 @@
-package metal
+package equinix
 
 import (
 	"context"
@@ -7,9 +7,9 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/plugin"
 )
 
-func tableMetalOperatingSystem(ctx context.Context) *plugin.Table {
+func tableEquinixMetalOperatingSystem(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
-		Name:        "metal_operating_system",
+		Name:        "equinix_metal_operating_system",
 		Description: "Equinix Metal operating systems.",
 		List: &plugin.ListConfig{
 			Hydrate: listOperatingSystem,
@@ -29,12 +29,12 @@ func tableMetalOperatingSystem(ctx context.Context) *plugin.Table {
 func listOperatingSystem(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_operating_system.listOperatingSystem", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_operating_system.listOperatingSystem", "connection_error", err)
 		return nil, err
 	}
 	items, resp, err := conn.OperatingSystems.List()
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_operating_system.listOperatingSystem", "query_error", err, "resp", resp)
+		plugin.Logger(ctx).Error("equinix_metal_operating_system.listOperatingSystem", "query_error", err, "resp", resp)
 		return nil, err
 	}
 	for _, i := range items {

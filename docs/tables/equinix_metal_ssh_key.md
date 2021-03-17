@@ -1,4 +1,4 @@
-# Table: metal_ssh_key
+# Table: equinix_metal_ssh_key
 
 List all SSH keys defined for the authenticated user.
 
@@ -10,7 +10,7 @@ List all SSH keys defined for the authenticated user.
 select
   *
 from
-  metal_ssh_key
+  equinix_metal_ssh_key
 ```
 
 ### Get SSH keys labelled Dwight
@@ -19,7 +19,7 @@ from
 select
   *
 from
-  metal_ssh_key
+  equinix_metal_ssh_key
 where
   label = 'Dwight'
 ```

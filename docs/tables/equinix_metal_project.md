@@ -1,4 +1,4 @@
-# Table: metal_project
+# Table: equinix_metal_project
 
 Projects the authenticated user has access to.
 
@@ -10,7 +10,7 @@ Projects the authenticated user has access to.
 select
   *
 from
-  metal_project
+  equinix_metal_project
 ```
 
 ### Project with Organization information
@@ -20,8 +20,8 @@ select
   p.name as project_name,
   o.name as org_name
 from
-  metal_project as p,
-  metal_organization as o
+  equinix_metal_project as p,
+  equinix_metal_organization as o
 where
   p.organization_id = o.id
 ```

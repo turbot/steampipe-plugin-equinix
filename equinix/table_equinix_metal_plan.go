@@ -1,4 +1,4 @@
-package metal
+package equinix
 
 import (
 	"context"
@@ -10,9 +10,9 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"
 )
 
-func tableMetalPlan(ctx context.Context) *plugin.Table {
+func tableEquinixMetalPlan(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
-		Name:        "metal_plan",
+		Name:        "equinix_metal_plan",
 		Description: "Equinix Metal plans.",
 		List: &plugin.ListConfig{
 			Hydrate: listPlan,
@@ -39,7 +39,7 @@ func tableMetalPlan(ctx context.Context) *plugin.Table {
 func listPlan(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_plan.listPlan", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_plan.listPlan", "connection_error", err)
 		return nil, err
 	}
 	maxItems := 1000
@@ -50,7 +50,7 @@ func listPlan(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (
 	for {
 		items, resp, err := conn.Plans.List(opts)
 		if err != nil {
-			plugin.Logger(ctx).Error("metal_plan.listPlan", "query_error", err, "opts", opts, "resp", resp)
+			plugin.Logger(ctx).Error("equinix_metal_plan.listPlan", "query_error", err, "opts", opts, "resp", resp)
 			return nil, err
 		}
 		for _, i := range items {

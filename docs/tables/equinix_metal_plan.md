@@ -1,4 +1,4 @@
-# Table: metal_plan
+# Table: equinix_metal_plan
 
 Information about Equinix Metal plans.
 
@@ -10,7 +10,7 @@ Information about Equinix Metal plans.
 select
   *
 from
-  metal_plan
+  equinix_metal_plan
 ```
 
 ### Get CPU details for each plan
@@ -21,7 +21,7 @@ select
   cpu ->> 'count' as cpu_count,
   cpu ->> 'type' as cpu_count
 from
-  metal_plan,
+  equinix_metal_plan,
   jsonb_array_elements(specs -> 'cpus') as cpu
 ```
 
@@ -32,7 +32,7 @@ select
   name,
   pricing ->> 'hour' as hourly_cost
 from
-  metal_plan
+  equinix_metal_plan
 order by
   hourly_cost
 ```

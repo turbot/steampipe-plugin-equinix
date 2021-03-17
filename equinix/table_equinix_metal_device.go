@@ -1,4 +1,4 @@
-package metal
+package equinix
 
 import (
 	"context"
@@ -10,9 +10,9 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"
 )
 
-func tableMetalDevice(ctx context.Context) *plugin.Table {
+func tableEquinixMetalDevice(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
-		Name:        "metal_device",
+		Name:        "equinix_metal_device",
 		Description: "List all devices in all projects.",
 		List: &plugin.ListConfig{
 			ParentHydrate: listProject,
@@ -79,7 +79,7 @@ func tableMetalDevice(ctx context.Context) *plugin.Table {
 func listDevice(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_device.listDevice", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_device.listDevice", "connection_error", err)
 		return nil, err
 	}
 	maxItems := 1000
@@ -91,7 +91,7 @@ func listDevice(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData)
 	for {
 		items, resp, err := conn.Devices.List(project.ID, opts)
 		if err != nil {
-			plugin.Logger(ctx).Error("metal_device.listDevice", "query_error", err, "opts", opts, "resp", resp)
+			plugin.Logger(ctx).Error("equinix_metal_device.listDevice", "query_error", err, "opts", opts, "resp", resp)
 			return nil, err
 		}
 		for _, i := range items {
@@ -109,14 +109,14 @@ func listDevice(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData)
 func getDevice(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_device.getDevice", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_device.getDevice", "connection_error", err)
 		return nil, err
 	}
 	quals := d.KeyColumnQuals
 	id := quals["id"].GetStringValue()
 	item, resp, err := conn.Devices.Get(id, nil)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_device.getDevice", "query_error", err, "id", id, "resp", resp)
+		plugin.Logger(ctx).Error("equinix_metal_device.getDevice", "query_error", err, "id", id, "resp", resp)
 		return nil, err
 	}
 	return item, nil

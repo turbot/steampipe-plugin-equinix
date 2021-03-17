@@ -1,4 +1,4 @@
-package metal
+package equinix
 
 import (
 	"context"
@@ -16,7 +16,7 @@ import (
 func connect(_ context.Context, d *plugin.QueryData) (*metal.Client, error) {
 
 	// Load connection from cache, which preserves throttling protection etc
-	cacheKey := "metal"
+	cacheKey := "equinix_metal"
 	if cachedData, ok := d.ConnectionManager.Cache.Get(cacheKey); ok {
 		return cachedData.(*metal.Client), nil
 	}
@@ -24,10 +24,10 @@ func connect(_ context.Context, d *plugin.QueryData) (*metal.Client, error) {
 	var token string
 
 	// First, use the token config
-	metalConfig := GetConfig(d.Connection)
-	if &metalConfig != nil {
-		if metalConfig.Token != nil {
-			token = *metalConfig.Token
+	equinixConfig := GetConfig(d.Connection)
+	if &equinixConfig != nil {
+		if equinixConfig.Token != nil {
+			token = *equinixConfig.Token
 		}
 	}
 

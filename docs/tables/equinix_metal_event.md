@@ -1,4 +1,4 @@
-# Table: metal_event
+# Table: equinix_metal_event
 
 Events across all devices.
 
@@ -10,7 +10,7 @@ Events across all devices.
 select
   *
 from
-  metal_event
+  equinix_metal_event
 ```
 
 ### All SSH key events
@@ -19,7 +19,7 @@ from
 select
   *
 from
-  metal_event
+  equinix_metal_event
 where
   type like 'ssh_key.%'
 ```

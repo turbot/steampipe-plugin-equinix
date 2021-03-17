@@ -1,4 +1,4 @@
-package metal
+package equinix
 
 import (
 	"context"
@@ -10,9 +10,9 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/plugin/transform"
 )
 
-func tableMetalOrganization(ctx context.Context) *plugin.Table {
+func tableEquinixMetalOrganization(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
-		Name:        "metal_organization",
+		Name:        "equinix_metal_organization",
 		Description: "Organizations the user has access to.",
 		List: &plugin.ListConfig{
 			Hydrate: listOrganization,
@@ -60,7 +60,7 @@ func tableMetalOrganization(ctx context.Context) *plugin.Table {
 func listOrganization(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_organization.listOrganization", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_organization.listOrganization", "connection_error", err)
 		return nil, err
 	}
 	maxItems := 1000
@@ -71,7 +71,7 @@ func listOrganization(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 	for {
 		items, resp, err := conn.Organizations.List(opts)
 		if err != nil {
-			plugin.Logger(ctx).Error("metal_organization.listOrganization", "query_error", err, "opts", opts, "resp", resp)
+			plugin.Logger(ctx).Error("equinix_metal_organization.listOrganization", "query_error", err, "opts", opts, "resp", resp)
 			return nil, err
 		}
 		for _, i := range items {
@@ -89,14 +89,14 @@ func listOrganization(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 func getOrganization(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_organization.getOrganization", "connection_error", err)
+		plugin.Logger(ctx).Error("equinix_metal_organization.getOrganization", "connection_error", err)
 		return nil, err
 	}
 	quals := d.KeyColumnQuals
 	id := quals["id"].GetStringValue()
 	organization, resp, err := conn.Organizations.Get(id, nil)
 	if err != nil {
-		plugin.Logger(ctx).Error("metal_organization.getOrganization", "query_error", err, "id", id, "resp", resp)
+		plugin.Logger(ctx).Error("equinix_metal_organization.getOrganization", "query_error", err, "id", id, "resp", resp)
 		return nil, err
 	}
 	return organization, nil
