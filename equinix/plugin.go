@@ -26,6 +26,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"equinix_metal_project":          tableEquinixMetalProject(ctx),
 			"equinix_metal_project_ssh_key":  tableEquinixMetalProjectSSHKey(ctx),
 			"equinix_metal_ssh_key":          tableEquinixMetalSSHKey(ctx),
+			"equinix_metal_spot_price":       tableEquinixMetalSpotPrice(ctx),
 		},
 	}
 	return p
