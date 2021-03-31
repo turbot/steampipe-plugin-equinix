@@ -17,6 +17,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 		DefaultTransform: transform.FromJSONTag().NullIfZero(),
 		TableMap: map[string]*plugin.Table{
 			"equinix_metal_device":           tableEquinixMetalDevice(ctx),
+			"equinix_metal_capacity":         tableEquinixMetalCapacity(ctx),
 			"equinix_metal_facility":         tableEquinixMetalFacility(ctx),
 			"equinix_metal_event":            tableEquinixMetalEvent(ctx),
 			"equinix_metal_operating_system": tableEquinixMetalOperatingSystem(ctx),
