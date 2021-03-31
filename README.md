@@ -11,7 +11,7 @@ Use SQL to query infrastructure including servers, networks, facilities and more
 
 ## Quick start
 
-Install the plugin with [Steampipe](https//steampipe.io):
+Install the plugin with [Steampipe](https://steampipe.io):
 ```shell
 steampipe plugin install equinix
 ```
