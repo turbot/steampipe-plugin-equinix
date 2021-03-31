@@ -1,48 +1,85 @@
+## Note for users new to Steampipe
+The Equinix Plugin for Steampipe can be managed automatically with the Steampipe CLI.
+For more information on how to get started view the [documentation](https://hub.steampipe.io/plugins/turbot/equinix).
 
-<p align="center">
-    <h1 align="center">Equinix Plugin for Steampipe</h1>
-</p>
-<p align="center">
-  <a aria-label="Steampipe logo" href="https://steampipe.io">
-    <img src="https://steampipe.io/images/steampipe_logo_wordmark_padding.svg" height="28">
-  </a>
-  <a aria-label="License" href="LICENSE">
-    <img alt="" src="https://img.shields.io/static/v1?label=license&message=MPL-2.0&style=for-the-badge&labelColor=777777&color=F3F1F0">
-  </a>
-</p>
-
-## Query Equinix with SQL
+# The Equinix Plugin for Steampipe
 
 Use SQL to query infrastructure including servers, networks, facilities and more from Equinix Metal. For example:
 
 ```sql
-select
-  hostname,
-  ip_addresses
-from
-  equinix_metal_device
+select hostname, ip_addresses from equinix_metal_device
 ```
 
-Learn about [Steampipe](https://steampipe.io/).
+- [Documentation](https://hub.steampipe.io/plugins/turbot/equinix)
+- [Tables & schemas](https://hub.steampipe.io/plugins/turbot/equinix/tables)
+- [Equinix plugin issues](https://github.com/turbot/steampipe-plugin-equinix/issues)
+- [Steampipe issues](https://github.com/turbot/steampipe/issues)
+- [Discussion forums](https://github.com/turbot/steampipe/discussions)
 
-## Get started
+## Prerequisites
 
-**[Table documentation and examples &rarr;](https://hub.steampipe.io/plugins/turbot/equinix)**
+- Install [Steampipe](https://steampipe.io/downloads) v0.3.3 or greater
+- Install [Golang](https://golang.org/doc/install) 1.15.x or greater
 
-Install the plugin:
+## Building the Plugin
 
-```shell
-steampipe plugin install equinix
+Clone the repository:
+
+```sh
+$ mkdir -p $GOPATH/src/github.com/turbot; cd $GOPATH/src/github.com/turbot
+$ git clone git@github.com:turbot/steampipe-plugin-equinix
 ```
 
-## Get involved
 
-### Community
+Enter the plugin directory and build the plugin:
 
-The Steampipe community can be found on [GitHub Discussions](https://github.com/turbot/steampipe/discussions), where you can ask questions, voice ideas, and share your projects.
+```sh
+$ cd $GOPATH/src/github.com/turbot/steampipe-plugin-equinix
+$ make
+```
 
-Our [Code of Conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md) applies to all Steampipe community channels.
 
-### Contributing
+Copy configuration files from repo to local steampipe config:
+```sh
+$ cp $GOPATH/src/github.com/turbot/steampipe-plugin-equinix/config/*.spc ~/.steampipe/config
+```
+
+
+Read and update the configuration file setting(s) for your environment [see the plugin docs](https://hub.steampipe.io/plugins/turbot/equinix) for additional info:
+```sh
+$ pico ~/.steampipe/config/equinix.spc
+```
+
+## Using the Plugin
+
+During the `make` process, the script will output the plugin to `~/.steampipe/plugins/hub.steampipe.io/plugins/turbot/equinix@latest/` which is the default location for steampipe plugins. Restart Steampipe if already running. Then try a test query:
+
+```bash
+$ steampipe query "select hostname from equinix_metal_device"
+```
+
+## Developing the Plugin
+
+To add features to the Plugin, install [Go](http://www.golang.org) and configure your your [GOPATH](http://golang.org/doc/code.html#GOPATH)
+
+Compile the Plugin by running `make`. The Plugin binary will output to your Steampipe plugin directory.
+
+```sh
+$ make
+```
+
+## Community
+
+The Steampipe community can be found on [GitHub Discussions](https://github.com/turbot/steampipe/discussions), where you can ask questions, voice ideas, and share your projects. Our [Code of Conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md) applies to all Steampipe community channels.
+
+## Contributing
 
 Please see [CONTRIBUTING.md](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md).
+
+`Help wanted` issues:
+- [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
+- [Equinix Plugin](https://github.com/turbot/steampipe-plugin-equinix/labels/help%20wanted)
+
+## License
+
+By contributing to Steampipe and Steampipe plugins you agree that your contributions will be licensed as defined on the [LICENSE](LICENSE) file.
