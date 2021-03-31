@@ -6,13 +6,42 @@ brand_color: "#ED1C24"
 display_name: Equinix
 name: equinix
 description: Steampipe plugin for querying Equinix Metal servers, networks, facilities and more.
+og_description: Query Equinix with SQL! Open source CLI. No DB required. 
+og_image: "/images/plugins/turbot/equinix-social-graphic.png"
 ---
 
-# Equinix
+# Equinix + Steampipe
 
-Query your Equinix Metal infrastructure including servers, networks, facilities and more.
+[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
 
-## Installation
+[Equinix Metal](https://metal.equinix.com) delivers global, interconnected, integrated, and on-demand bare-metal infrastructure as a service. As the name implies, these bare metal servers do not require virtualization or multi-tenancy. The provisioned infrastructure is deployed at Equinix data center locations allowing enabling direct network interconnects to other cloud providers and a global network backbone.
+
+For example:
+
+```sql
+select 
+  hostname, 
+  state,
+  tags
+from 
+  equinix_metal_device
+```
+
+```
++-----------------------+--------+---------------+
+| hostname              | state  | tags          |
++-----------------------+--------+---------------+
+| dc13-c3.medium.x86-01 | active | {"prod":true} |
++-----------------------+--------+---------------+
+```
+
+## Documentation
+
+- **[Table definitions & examples →](equinix/tables)**
+
+## Get started
+
+### Install
 
 Download and install the latest Equinix Metal plugin:
 
@@ -20,25 +49,27 @@ Download and install the latest Equinix Metal plugin:
 steampipe plugin install equinix
 ```
 
-## Connection Configuration
+### Credentials
 
-Connection configurations are defined using HCL in one or more Steampipe config files. Steampipe will load ALL configuration files from `~/.steampipe/config` that have a `.spc` extension. A config file may contain multiple connections.
+| Item | Description |
+| - | - |
+| Credentials | Use an [API Token](https://metal.equinix.com/developers/api/). |
+| Permissions | `Read-only` |
+| Radius | Each connection represents a single Equinix Metal account. |
+| Resolution |  1. `token` in Steampipe config.<br>2. `PACKET_AUTH_TOKEN` environment variable. (A legacy name.) |
 
-Installing the latest equinix plugin will create a connection file (`~/.steampipe/config/equinix.spc`) with a single connection named `equinix`. You must modify this connection to include your personal credentials.
+### Configuration
 
-An [API Token](https://metal.equinix.com/developers/api/) is the recommended way to set credentials. Read scope is required (write is not):
+Installing the latest equinix plugin will create a config file (`~/.steampipe/config/equinix.spc`) with a single connection named `equinix`:
 
 ```hcl
 connection "equinix" {
   plugin  = "equinix"
-  token   = "XV1JE8QXVHdCYoWT8wbr7NRdPYrZRx3N"
+  token   = "XV1JE4QXVHdCYoWT2wbr2NRdPYrZRx3N"
 }
 ```
 
-Credentials are resolved in this order:
-1. `token` in Steampipe config.
-2. `PACKET_AUTH_TOKEN` environment variable. (A legacy name.)
+## Get involved
 
-## Scope
-
-A Equinix Metal connection is scoped to a single Equinix Metal account, with a single set of credentials.
+* Open source: https://github.com/turbot/steampipe-plugin-equinix
+* Community: [Discussion forums](https://github.com/turbot/steampipe/discussions)
