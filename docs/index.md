@@ -56,7 +56,7 @@ steampipe plugin install equinix
 | Credentials | Use an [API Token](https://metal.equinix.com/developers/api/). |
 | Permissions | `Read-only` |
 | Radius | Each connection represents a single Equinix Metal account. |
-| Resolution |  1. `token` in Steampipe config.<br>2. `PACKET_AUTH_TOKEN` environment variable. (A legacy name.) |
+| Resolution |  1. `token` in Steampipe config.<br />2. `PACKET_AUTH_TOKEN` environment variable. (A legacy name.) |
 
 ### Configuration
 
