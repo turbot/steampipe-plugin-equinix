@@ -1,5 +1,12 @@
 ## v0.0.3 [2021-03-31]
 
+_Bug fixes_
+
+- Fix HTML line break in docs home page
+
+
+## v0.0.3 [2021-03-31]
+
 _What's new?_
 
 - Updated README and docs home page
