@@ -37,7 +37,7 @@ from
 
 ## Documentation
 
-- **[Table definitions & examples →](equinix/tables)**
+- **[Table definitions & examples →](/plugins/turbot/equinix/tables)**
 
 ## Get started
 
