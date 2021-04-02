@@ -1,3 +1,9 @@
+## v0.0.4 [2021-04-02]
+
+_Bug fixes_
+
+- Fixed: `Table definitions & examples` link now points to the correct location ([#12](https://github.com/turbot/steampipe-plugin-equinix/pull/12))
+
 ## v0.0.3 [2021-03-31]
 
 _What's new?_
