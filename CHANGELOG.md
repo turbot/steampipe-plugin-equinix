@@ -13,7 +13,7 @@ _What's new?_
 
 _Bug fixes_
 
-- Fixed: Return an error if the token is not set in credentials or env var [#15](https://github.com/turbot/steampipe-plugin-equinix/issues/15)
+- Fixed: Return an error if the token is not set in credentials or env var ([#15](https://github.com/turbot/steampipe-plugin-equinix/issues/15))
 
 
 ## v0.0.5 [2021-04-02]
