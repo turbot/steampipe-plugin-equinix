@@ -2,6 +2,7 @@ package equinix
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"os"
 	"strings"
@@ -21,9 +22,11 @@ func connect(_ context.Context, d *plugin.QueryData) (*metal.Client, error) {
 		return cachedData.(*metal.Client), nil
 	}
 
-	var token string
+	// Default to using the env var (#2)
+	// This uses the legacy name to match the SDK.
+	token := os.Getenv("PACKET_AUTH_TOKEN")
 
-	// First, use the token config
+	// Prefer the config (#1)
 	equinixConfig := GetConfig(d.Connection)
 	if &equinixConfig != nil {
 		if equinixConfig.Token != nil {
@@ -31,10 +34,9 @@ func connect(_ context.Context, d *plugin.QueryData) (*metal.Client, error) {
 		}
 	}
 
-	// Otherwise, default to using PACKET_AUTH_TOKEN env var (it appears the
-	// product was later renamed to Equinix Metal)
 	if token == "" {
-		token = os.Getenv("PACKET_AUTH_TOKEN")
+		// Credentials not set
+		return nil, errors.New("token must be configured")
 	}
 
 	conn := metal.NewClientWithAuth("steampipe", token, http.DefaultClient)
