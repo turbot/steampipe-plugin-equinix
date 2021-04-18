@@ -1,3 +1,21 @@
+## v0.0.6 [2021-04-18]
+
+_What's new?_
+
+- New tables
+  - [equinix_metal_metro](https://hub.steampipe.io/plugins/turbot/equinix/tables/equinix_metal_metro)
+
+- New columns
+  - [equinix_metal_device.metro_id](https://hub.steampipe.io/plugins/turbot/equinix/tables/equinix_metal_device)
+  - [equinix_metal_facility.metro_id](https://hub.steampipe.io/plugins/turbot/equinix/tables/equinix_metal_facility)
+  - [equinix_metal_plan.available_in_metros](https://hub.steampipe.io/plugins/turbot/equinix/tables/equinix_metal_plan)
+  - [equinix_metal_plan.href](https://hub.steampipe.io/plugins/turbot/equinix/tables/equinix_metal_plan)
+
+_Bug fixes_
+
+- Fixed: Return an error if the token is not set in credentials or env var [#15](https://github.com/turbot/steampipe-plugin-equinix/issues/15)
+
+
 ## v0.0.5 [2021-04-02]
 
 _Bug fixes_
