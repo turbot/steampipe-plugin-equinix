@@ -29,6 +29,8 @@ func tableEquinixMetalFacility(ctx context.Context) *plugin.Table {
 			// TODO: href is always empty?
 			{Name: "href", Type: proto.ColumnType_STRING, Description: "URL of the facility."},
 			// Resource columns
+			//{Name: "metro", Type: proto.ColumnType_JSON, Description: "Metro for the facility."},
+			{Name: "metro_id", Type: proto.ColumnType_STRING, Transform: transform.FromField("Metro.ID"), Description: "Metro for the facility."},
 			// TODO: href is always empty, so this breaks too?
 			{Name: "akas", Type: proto.ColumnType_JSON, Transform: transform.FromField("URL").Transform(transform.EnsureStringArray), Description: resourceInterfaceDescription("akas")},
 			{Name: "tags", Type: proto.ColumnType_JSON, Transform: transform.FromConstant(map[string]string{}), Description: resourceInterfaceDescription("tags")},

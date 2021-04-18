@@ -42,6 +42,8 @@ func tableEquinixMetalDevice(ctx context.Context) *plugin.Table {
 			{Name: "ip_addresses", Type: proto.ColumnType_JSON, Description: "Network configuration for the device."},
 			{Name: "ipxe_script_url", Type: proto.ColumnType_STRING, Description: "IPXE script URL for the device."},
 			{Name: "locked", Type: proto.ColumnType_BOOL, Description: "True if the device is locked."},
+			//{Name: "metro", Type: proto.ColumnType_JSON, Description: "Metro for the device."},
+			{Name: "metro_id", Type: proto.ColumnType_STRING, Transform: transform.FromField("Metro.ID"), Description: "Metro for the device."},
 			{Name: "network_ports", Type: proto.ColumnType_JSON, Description: "List of network ports for the device."},
 			//{Name: "operating_system", Type: proto.ColumnType_JSON, Description: "OS for the device."},
 			{Name: "operating_system_slug", Type: proto.ColumnType_STRING, Transform: transform.FromField("OS.Slug"), Description: "OS for the device."},

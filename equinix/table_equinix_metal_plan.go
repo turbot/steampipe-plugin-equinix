@@ -24,10 +24,13 @@ func tableEquinixMetalPlan(ctx context.Context) *plugin.Table {
 			{Name: "name", Type: proto.ColumnType_STRING, Description: "Name of the plan."},
 			// Other columns
 			// NOTE: returns IDs only
-			{Name: "available_in", Type: proto.ColumnType_JSON, Transform: transform.FromField("AvailableIn").Transform(facilitiesToIDs), Description: "Facilities where the plan is available."},
+			{Name: "available_in", Type: proto.ColumnType_JSON, Transform: transform.FromField("AvailableIn").Transform(facilitiesToIDs), Description: "Facility IDs where the plan is available."},
+			// NOTE: returns IDs only
+			{Name: "available_in_metros", Type: proto.ColumnType_JSON, Transform: transform.FromField("AvailableInMetros").Transform(metrosToIDs), Description: "Metro IDs where the plan is available."},
 			{Name: "class", Type: proto.ColumnType_STRING, Description: "Class of the plan."},
 			{Name: "deployment_types", Type: proto.ColumnType_JSON, Description: "Deployment types for the plan."},
 			{Name: "description", Type: proto.ColumnType_STRING, Description: "Description of the plan."},
+			{Name: "href", Type: proto.ColumnType_STRING, Description: "URL of the plan."},
 			{Name: "legacy", Type: proto.ColumnType_BOOL, Description: "True if this is a legacy plan."},
 			{Name: "line", Type: proto.ColumnType_STRING, Description: "Line of the plan."},
 			{Name: "pricing", Type: proto.ColumnType_JSON, Description: "Pricing of the plan."},

@@ -20,6 +20,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"equinix_metal_capacity":         tableEquinixMetalCapacity(ctx),
 			"equinix_metal_facility":         tableEquinixMetalFacility(ctx),
 			"equinix_metal_event":            tableEquinixMetalEvent(ctx),
+			"equinix_metal_metro":            tableEquinixMetalMetro(ctx),
 			"equinix_metal_operating_system": tableEquinixMetalOperatingSystem(ctx),
 			"equinix_metal_organization":     tableEquinixMetalOrganization(ctx),
 			"equinix_metal_plan":             tableEquinixMetalPlan(ctx),

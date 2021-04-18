@@ -115,6 +115,20 @@ func facilitiesToIDs(_ context.Context, d *transform.TransformData) (interface{}
 	return ids, nil
 }
 
+func metrosToIDs(_ context.Context, d *transform.TransformData) (interface{}, error) {
+	items := d.Value.([]metal.Metro)
+	ids := []string{}
+	for _, i := range items {
+		if i.ID != "" {
+			ids = append(ids, i.ID)
+		} else {
+			parts := strings.Split(i.Href, "/")
+			ids = append(ids, parts[len(parts)-1])
+		}
+	}
+	return ids, nil
+}
+
 func sshKeysToIDs(_ context.Context, d *transform.TransformData) (interface{}, error) {
 	items := d.Value.([]metal.SSHKey)
 	ids := []string{}
