@@ -2,7 +2,7 @@
 
 # Equinix Plugin for Steampipe
 
-Use SQL to query infrastructure including servers, networks, facilities and more from Equinix Metal. 
+Use SQL to query infrastructure including servers, networks, facilities and more from Equinix Metal.
 
 * **[Get started →](https://hub.steampipe.io/plugins/turbot/equinix)**
 * Documentation: [Table definitions & examples](https://hub.steampipe.io/plugins/turbot/equinix/tables)
@@ -57,7 +57,7 @@ Further reading:
 
 ## Contributing
 
-Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [MPL-2.0 open source license](https://github.com/turbot/steampipe-plugin-equinix/blob/main/LICENSE).
+Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-plugin-equinix/blob/main/LICENSE).
 
 `help wanted` issues:
 - [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
