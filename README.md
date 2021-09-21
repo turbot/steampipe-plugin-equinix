@@ -30,7 +30,7 @@ Prerequisites:
 Clone:
 
 ```sh
-git clone git@github.com:turbot/steampipe-plugin-equinix
+git clone https://github.com/turbot/steampipe-plugin-equinix.git
 cd steampipe-plugin-equinix
 ```
 
