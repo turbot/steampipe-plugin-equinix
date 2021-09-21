@@ -4,5 +4,5 @@ go 1.15
 
 require (
 	github.com/packethost/packngo v0.13.0
-	github.com/turbot/steampipe-plugin-sdk v1.3.1
+	github.com/turbot/steampipe-plugin-sdk v1.6.1
 )
