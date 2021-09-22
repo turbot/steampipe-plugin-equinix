@@ -1,3 +1,10 @@
+## v0.0.7 [2021-09-22]
+
+_Enhancements_
+
+- Recompiled plugin with [steampipe-plugin-sdk v1.6.1](https://github.com/turbot/steampipe-plugin-sdk/blob/main/CHANGELOG.md#v161--2021-09-21) ([#19](https://github.com/turbot/steampipe-plugin-equinix/pull/19))
+- Changed plugin license to Apache 2.0 per [turbot/steampipe](https://github.com/turbot/steampipe/issues/488) ([#17](https://github.com/turbot/steampipe-plugin-equinix/pull/17))
+
 ## v0.0.6 [2021-04-18]
 
 _What's new?_
