@@ -12,19 +12,20 @@ og_image: "/images/plugins/turbot/equinix-social-graphic.png"
 
 # Equinix + Steampipe
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
-
 [Equinix Metal](https://metal.equinix.com) delivers global, interconnected, integrated, and on-demand bare-metal infrastructure as a service. As the name implies, these bare metal servers do not require virtualization or multi-tenancy. The provisioned infrastructure is deployed at Equinix data center locations allowing enabling direct network interconnects to other cloud providers and a global network backbone.
+
+[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
 
 For example:
 
 ```sql
 select 
-  hostname, 
-  state,
-  tags
+  name, 
+  slug,
+  distro,
+  version
 from 
-  equinix_metal_device
+  equinix_metal_operating_system
 ```
 
 ```
@@ -41,7 +42,7 @@ from
 
 ## Documentation
 
-- **[Table definitions & examples →](/plugins/turbot/equinix/tables)**
+- **[Table definitions & examples →](https://hub.steampipe.io/plugins/turbot/equinix/tables)**
 
 ## Get started
 
@@ -63,8 +64,8 @@ connection "equinix" {
 
   # API Token for your Equinix Metal account
   # Reference: https://metal.equinix.com/developers/docs/accounts/users/
-  # Env variables (in order of precedence): token, PACKET_AUTH_TOKEN
-  #token = "YOUR_EQUINIX_METAL_API_TOKEN"
+  # Env variables (in order of precedence): PACKET_AUTH_TOKEN
+  # token = "YOUR_EQUINIX_METAL_API_TOKEN"
 }
 ```
 
@@ -87,18 +88,18 @@ connection "equinix" {
     token  = "K1zaP7ysFR74eQBWBzWHjg2Z9RfbKZQL"
   }
 
-connection "equinix2" {
-  plugin = "equinix"
-  token  = "PuTxs7UsHxVVpGnjhJn56mdb63xdCN7q"
-}
+  connection "equinix2" {
+    plugin = "equinix"
+    token  = "PuTxs7UsHxVVpGnjhJn56mdb63xdCN7q"
+  }
 
-connection "equinix3" {
-  plugin = "equinix"
-  token  = "utyTsss96BY6oENAmeAZsiwffykqUppb"
-}
+  connection "equinix3" {
+    plugin = "equinix"
+    token  = "utyTsss96BY6oENAmeAZsiwffykqUppb"
+  }
   ```
 
-## Get involved
+## Get Involved
 
 * Open source: https://github.com/turbot/steampipe-plugin-equinix
 * Community: [Discussion forums](https://github.com/turbot/steampipe/discussions)
