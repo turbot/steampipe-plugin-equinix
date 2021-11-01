@@ -5,7 +5,7 @@ icon_url: "/images/plugins/turbot/equinix.svg"
 brand_color: "#ED1C24"
 display_name: Equinix
 name: equinix
-description: Steampipe plugin for querying Equinix Metal servers, networks, facilities and more.
+description: Steampipe plugin for querying Equinix Metal servers, networks, facilities, and more.
 og_description: Query Equinix with SQL! Open source CLI. No DB required. 
 og_image: "/images/plugins/turbot/equinix-social-graphic.png"
 ---
@@ -102,4 +102,4 @@ connection "equinix" {
 ## Get Involved
 
 * Open source: https://github.com/turbot/steampipe-plugin-equinix
-* Community: [Discussion forums](https://github.com/turbot/steampipe/discussions)
+* Community: [Slack Channel](https://steampipe.io/community/join)
