@@ -28,11 +28,15 @@ from
 ```
 
 ```
-+-----------------------+--------+---------------+
-| hostname              | state  | tags          |
-+-----------------------+--------+---------------+
-| dc13-c3.medium.x86-01 | active | {"prod":true} |
-+-----------------------+--------+---------------+
++-----------------+---------------+----------+---------+
+| name            | slug          | distro   | version |
++-----------------+---------------+----------+---------+
+| CentOS 7        | centos_7      | centos   | 7       |
+| CentOS 6        | centos_6      | centos   | 6       |
+| Alpine 3        | alpine_3      | alpine   | 3       |
+| OpenSUSE 42.3   | opensuse_42_3 | opensuse | 42.3    |
+| Custom / Manual | custom        | custom   | 1       |
++-----------------+---------------+----------+---------+
 ```
 
 ## Documentation
@@ -49,25 +53,50 @@ Download and install the latest Equinix Metal plugin:
 steampipe plugin install equinix
 ```
 
-### Credentials
-
-| Item | Description |
-| - | - |
-| Credentials | Use an [API Token](https://metal.equinix.com/developers/api/). |
-| Permissions | `Read-only` |
-| Radius | Each connection represents a single Equinix Metal account. |
-| Resolution |  1. `token` in Steampipe config.<br />2. `PACKET_AUTH_TOKEN` environment variable. (A legacy name.) |
-
 ### Configuration
 
-Installing the latest equinix plugin will create a config file (`~/.steampipe/config/equinix.spc`) with a single connection named `equinix`:
+Installing the latest Equinix plugin will create a config file (`~/.steampipe/config/equinix.spc`) with a single connection named `equinix`:
 
 ```hcl
 connection "equinix" {
-  plugin  = "equinix"
-  token   = "XV1JE4QXVHdCYoWT2wbr2NRdPYrZRx3N"
+  plugin = "equinix"
+
+  # API Token for your Equinix Metal account
+  # Reference: https://metal.equinix.com/developers/docs/accounts/users/
+  # Env variables (in order of precedence): token, PACKET_AUTH_TOKEN
+  #token = "YOUR_EQUINIX_METAL_API_TOKEN"
 }
 ```
+
+### Example Configurations
+
+- Connect to a single account:
+
+  ```hcl
+  connection "equinix" {
+    plugin = "equinix"
+    token  = "C1eaP7ysSR25eQBJHzWHjg2Z4RbbKZQL"
+  }
+  ```
+
+- Create connections to multiple accounts:
+
+  ```hcl
+  connection "equinix1" {
+    plugin = "equinix"
+    token  = "K1zaP7ysFR74eQBWBzWHjg2Z9RfbKZQL"
+  }
+
+connection "equinix2" {
+  plugin = "equinix"
+  token  = "PuTxs7UsHxVVpGnjhJn56mdb63xdCN7q"
+}
+
+connection "equinix3" {
+  plugin = "equinix"
+  token  = "utyTsss96BY6oENAmeAZsiwffykqUppb"
+}
+  ```
 
 ## Get involved
 
