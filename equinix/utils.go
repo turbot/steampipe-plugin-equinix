@@ -28,10 +28,8 @@ func connect(_ context.Context, d *plugin.QueryData) (*metal.Client, error) {
 
 	// Prefer the config (#1)
 	equinixConfig := GetConfig(d.Connection)
-	if &equinixConfig != nil {
-		if equinixConfig.Token != nil {
-			token = *equinixConfig.Token
-		}
+	if equinixConfig.Token != nil {
+		token = *equinixConfig.Token
 	}
 
 	if token == "" {
