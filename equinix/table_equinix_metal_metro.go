@@ -5,8 +5,8 @@ import (
 
 	metal "github.com/packethost/packngo"
 
-	"github.com/turbot/steampipe-plugin-sdk/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v3/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
 )
 
 func tableEquinixMetalMetro(ctx context.Context) *plugin.Table {
