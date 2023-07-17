@@ -78,10 +78,12 @@ connection "equinix_dev" {
   plugin    = "equinix"
   token     = "XV1KL4QXVHcCYoWT2wbr2NRdRTrZRx3K"
 }
+
 connection "equinix_qa" {
   plugin    = "equinix"
   token     = "XV1KL4QXVHcCYoWT2wbr2NRdRTrZRx3L"
 }
+
 connection "equinix_prod" {
   plugin    = "equinix"
   token     = "XV1KL4QXVHcCYoWT2wbr2NRdRTrZRx3M"
