@@ -80,7 +80,7 @@ connection "equinix_my_account" {
 }
 ```
 
-### Multi-Account Connections
+## Multi-Account Connections
 
 You may create multiple equinix connections:
 
