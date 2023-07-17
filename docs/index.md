@@ -69,17 +69,6 @@ connection "equinix" {
 }
 ```
 
-### Example Configurations
-
-Connect to a single account:
-
-```hcl
-connection "equinix_my_account" {
-  plugin = "equinix"
-  token  = "XV1KL4QXVHcCYoWT2wbr2NRdRTrZRx3N"
-}
-```
-
 ## Multi-Account Connections
 
 You may create multiple equinix connections:
