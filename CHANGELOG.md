@@ -1,3 +1,9 @@
+## v0.5.0 [2023-07-17]
+
+_Enhancements_
+
+- Updated the `docs/index.md` file to include multi-account configuration examples. ([#36](https://github.com/turbot/steampipe-plugin-equinix/pull/36))
+
 ## v0.4.0 [2023-04-06]
 
 _Dependencies_
