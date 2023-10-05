@@ -3,7 +3,7 @@ module github.com/turbot/steampipe-plugin-equinix
 go 1.21
 
 require (
-	github.com/packethost/packngo v0.13.0
+	github.com/packethost/packngo v0.30.0
 	github.com/turbot/steampipe-plugin-sdk/v5 v5.6.2
 )
 
