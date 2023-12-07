@@ -16,21 +16,37 @@ The `equinix_metal_ssh_key` table provides insights into SSH Keys within the Equ
 ### List all SSH keys
 Explore the full range of SSH keys available in your Equinix Metal environment with this query. It's useful for verifying key access and ensuring appropriate security measures are in place.
 
-```sql
+```sql+postgres
 select
   *
 from
-  equinix_metal_ssh_key
+  equinix_metal_ssh_key;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_ssh_key;
 ```
 
 ### Get SSH keys labelled Dwight
 Discover the segments that use SSH keys labelled 'Dwight'. This can be beneficial in understanding the distribution and usage of specific SSH keys within your infrastructure, enhancing overall security management.
 
-```sql
+```sql+postgres
 select
   *
 from
   equinix_metal_ssh_key
 where
-  label = 'Dwight'
+  label = 'Dwight';
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_ssh_key
+where
+  label = 'Dwight';
 ```

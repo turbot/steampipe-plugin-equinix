@@ -16,17 +16,24 @@ The `equinix_metal_facility` table provides insights into Equinix Metal Faciliti
 ### List all Equinix Metal facilities
 Discover the segments that comprise all the Equinix Metal facilities. This would be beneficial for understanding the overall infrastructure and distribution of resources within your network.
 
-```sql
+```sql+postgres
 select
   *
 from
-  equinix_metal_facility
+  equinix_metal_facility;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_facility;
 ```
 
 ### Get metro information for each facility
 Explore the geographical relationship between facilities and metros. This query is useful for understanding where each facility is located in relation to metropolitan areas, which can help in planning logistics or assessing service coverage areas.
 
-```sql
+```sql+postgres
 select
   f.name as facility_name,
   m.name as metro_name
@@ -34,5 +41,18 @@ from
   equinix_metal_facility as f,
   equinix_metal_metro as m
 where
-  f.metro_id = m.id
+  f.metro_id = m.id;
+```
+
+```sql+sqlite
+The provided PostgreSQL query does not contain any PostgreSQL specific functions or data types that need to be converted to SQLite. The query can be used as is in SQLite. 
+
+select
+  f.name as facility_name,
+  m.name as metro_name
+from
+  equinix_metal_facility as f,
+  equinix_metal_metro as m
+where
+  f.metro_id = m.id;
 ```

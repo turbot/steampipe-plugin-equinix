@@ -16,20 +16,30 @@ The `equinix_metal_spot_price` table provides insights into the current and hist
 ### List all spot prices
 Explore the varying spot prices across different facilities and plans. This is useful for comparing and making informed decisions on the most cost-effective options.
 
-```sql
+```sql+postgres
 select
   *
 from
   equinix_metal_spot_price
 order by
   facility,
-  plan
+  plan;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_spot_price
+order by
+  facility,
+  plan;
 ```
 
 ### Find the cheapest facility to run a c3.medium.x86
 Discover the most cost-effective facility to operate a 'c3.medium.x86' by sorting through available options based on their current price. This is beneficial for budget optimization and cost-effective resource allocation.
 
-```sql
+```sql+postgres
 select
   *
 from
@@ -37,13 +47,24 @@ from
 where
   plan = 'c3.medium.x86'
 order by
-  current_price
+  current_price;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_spot_price
+where
+  plan = 'c3.medium.x86'
+order by
+  current_price;
 ```
 
 ### 10 cheapest servers
 Discover the segments that offer the most cost-effective server options. This query is useful for budget-conscious businesses looking to minimize their server expenses.
 
-```sql
+```sql+postgres
 select
   *
 from
@@ -51,5 +72,16 @@ from
 order by
   current_price
 limit
-  10
+  10;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_spot_price
+order by
+  current_price
+limit
+  10;
 ```

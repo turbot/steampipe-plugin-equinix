@@ -16,43 +16,70 @@ The `equinix_metal_plan` table provides insights into the various plans availabl
 ### List all plans
 Explore all available plans within your Equinix Metal environment to better understand the resources and services available to you. This can help in strategic planning and optimizing resource allocation.
 
-```sql
+```sql+postgres
 select
   *
 from
-  equinix_metal_plan
+  equinix_metal_plan;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_plan;
 ```
 
 ### Get CPU details for each plan
 Explore the specific CPU details for each plan to better understand the resources allocated. This can assist in identifying the most suitable plan based on your CPU requirements.
 
-```sql
+```sql+postgres
 select
   name,
   cpu ->> 'count' as cpu_count,
   cpu ->> 'type' as cpu_count
 from
   equinix_metal_plan,
-  jsonb_array_elements(specs -> 'cpus') as cpu
+  jsonb_array_elements(specs -> 'cpus') as cpu;
+```
+
+```sql+sqlite
+select
+  name,
+  json_extract(cpu.value, '$.count') as cpu_count,
+  json_extract(cpu.value, '$.type') as cpu_type
+from
+  equinix_metal_plan,
+  json_each(specs, '$.cpus') as cpu;
 ```
 
 ### Plans by price
 Analyze the pricing structure of various plans to understand the hourly cost for each, helping you make informed decisions about which plan suits your budget best.
 
-```sql
+```sql+postgres
 select
   name,
   pricing ->> 'hour' as hourly_cost
 from
   equinix_metal_plan
 order by
-  hourly_cost
+  hourly_cost;
+```
+
+```sql+sqlite
+select
+  name,
+  json_extract(pricing, '$.hour') as hourly_cost
+from
+  equinix_metal_plan
+order by
+  hourly_cost;
 ```
 
 ### Plans available by metro
 Analyze the settings to understand the availability of different plans across various metropolitan areas. This is useful for assessing the distribution and accessibility of services in different urban regions.
 
-```sql
+```sql+postgres
 select
   m.name as metro_name,
   p.name as plan_name
@@ -64,5 +91,20 @@ where
   m.id = mid
 order by
   m.name,
-  p.name
+  p.name;
+```
+
+```sql+sqlite
+select
+  m.name as metro_name,
+  p.name as plan_name
+from
+  equinix_metal_plan as p,
+  json_each(p.available_in_metros) as mid,
+  equinix_metal_metro as m
+where
+  m.id = mid.value
+order by
+  m.name,
+  p.name;
 ```

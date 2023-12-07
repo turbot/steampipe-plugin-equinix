@@ -16,17 +16,24 @@ The `equinix_metal_organization` table provides insights into Equinix Metal Orga
 ### List all organizations
 Explore the various organizations within your Equinix Metal account to understand their structure and relationships. This is useful for managing and organizing resources within a large account.
 
-```sql
+```sql+postgres
 select
   *
 from
-  equinix_metal_organization
+  equinix_metal_organization;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_organization;
 ```
 
 ### List all projects for the organization
 Explore which projects are associated with your organization. This is useful for gaining a comprehensive view of all ongoing projects, allowing for better management and coordination.
 
-```sql
+```sql+postgres
 select
   o.id as org_id,
   o.name as org_name,
@@ -37,5 +44,19 @@ from
   jsonb_array_elements_text(o.project_ids) as opid,
   equinix_metal_project as p
 where
-  p.id = opid
+  p.id = opid;
+```
+
+```sql+sqlite
+select
+  o.id as org_id,
+  o.name as org_name,
+  p.id as project_id,
+  p.name as project_name
+from
+  equinix_metal_organization as o,
+  json_each(o.project_ids) as opid,
+  equinix_metal_project as p
+where
+  p.id = opid.value;
 ```

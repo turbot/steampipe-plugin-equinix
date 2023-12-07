@@ -16,21 +16,37 @@ The `equinix_metal_event` table provides insights into events within the Equinix
 ### List all events
 Explore all events within your Equinix Metal environment to gain insights into past activities and changes. This can be useful for auditing, troubleshooting, and understanding the history of your infrastructure.
 
-```sql
+```sql+postgres
 select
   *
 from
-  equinix_metal_event
+  equinix_metal_event;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_event;
 ```
 
 ### All SSH key events
 Uncover the details of all events related to SSH keys. This is useful for tracking changes and maintaining security within your network.
 
-```sql
+```sql+postgres
 select
   *
 from
   equinix_metal_event
 where
-  type like 'ssh_key.%'
+  type like 'ssh_key.%';
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_event
+where
+  type like 'ssh_key.%';
 ```

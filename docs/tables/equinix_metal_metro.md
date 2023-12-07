@@ -16,9 +16,16 @@ The `equinix_metal_metro` table provides insights into the metro areas where Equ
 ### List all Equinix Metal metros
 Explore all the metropolitan locations where Equinix Metal services are available. This allows you to identify where you might deploy your infrastructure according to your business needs.
 
-```sql
+```sql+postgres
 select
   *
 from
-  equinix_metal_metro
+  equinix_metal_metro;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_metro;
 ```

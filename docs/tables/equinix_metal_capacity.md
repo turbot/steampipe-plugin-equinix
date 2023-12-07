@@ -16,20 +16,30 @@ The `equinix_metal_capacity` table provides insights into available and utilized
 ### List all capacities
 Discover the segments that allow you to analyze available resources within different facilities and plans, helping you manage and allocate resources effectively.
 
-```sql
+```sql+postgres
 select
   *
 from
   equinix_metal_capacity
 order by
   facility,
-  plan
+  plan;
+```
+
+```sql+sqlite
+select
+  *
+from
+  equinix_metal_capacity
+order by
+  facility,
+  plan;
 ```
 
 ### Show all servers with limited capacity
 Discover the segments that are operating at a limited capacity in your infrastructure. This is particularly useful for planning resources and preventing potential shortages.
 
-```sql
+```sql+postgres
 select
   facility,
   plan
@@ -39,5 +49,18 @@ where
   level = 'limited'
 order by
   facility,
+  plan;
+```
+
+```sql+sqlite
+select
+  facility,
   plan
+from
+  equinix_metal_capacity
+where
+  level = 'limited'
+order by
+  facility,
+  plan;
 ```
