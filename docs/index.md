@@ -8,6 +8,7 @@ name: equinix
 description: Steampipe plugin for querying Equinix Metal servers, networks, facilities and more.
 og_description: Query Equinix with SQL! Open source CLI. No DB required.
 og_image: "/images/plugins/turbot/equinix-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # Equinix + Steampipe
