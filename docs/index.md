@@ -129,7 +129,4 @@ connection "equinix_all" {
 }
 ```
 
-## Get involved
 
-* Open source: https://github.com/turbot/steampipe-plugin-equinix
-* Community: [Discussion forums](https://github.com/turbot/steampipe/discussions)
