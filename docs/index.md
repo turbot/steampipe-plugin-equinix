@@ -13,7 +13,7 @@ engines: ["steampipe", "sqlite", "postgres", "export"]
 
 # Equinix + Steampipe
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+[Steampipe](https://steampipe.io) is an open-source zero-ETL engine to instantly query cloud APIs using SQL.
 
 [Equinix Metal](https://metal.equinix.com) delivers global, interconnected, integrated, and on-demand bare-metal infrastructure as a service. As the name implies, these bare metal servers do not require virtualization or multi-tenancy. The provisioned infrastructure is deployed at Equinix data center locations allowing enabling direct network interconnects to other cloud providers and a global network backbone.
 
