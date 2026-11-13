@@ -3,9 +3,9 @@ package equinix
 import (
 	"context"
 
-	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v6/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin/transform"
 )
 
 func tableEquinixMetalSSHKey(ctx context.Context) *plugin.Table {
@@ -16,9 +16,9 @@ func tableEquinixMetalSSHKey(ctx context.Context) *plugin.Table {
 			Hydrate: listSSHKey,
 		},
 		Get: &plugin.GetConfig{
-			KeyColumns:        plugin.SingleColumn("id"),
-			Hydrate:           getSSHKey,
-			ShouldIgnoreError: isNotFoundError([]string{"404 Not found"}),
+			KeyColumns:   plugin.SingleColumn("id"),
+			Hydrate:      getSSHKey,
+			IgnoreConfig: &plugin.IgnoreConfig{ShouldIgnoreErrorFunc: isNotFoundError([]string{"404 Not found"})},
 		},
 		Columns: []*plugin.Column{
 			// Top columns
