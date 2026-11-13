@@ -1,7 +1,7 @@
 package equinix
 
 import (
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
 )
 
 type equinixConfig struct {
@@ -14,9 +14,9 @@ func ConfigInstance() interface{} {
 
 // GetConfig :: retrieve and cast connection config from query data
 func GetConfig(connection *plugin.Connection) equinixConfig {
-	if connection == nil || connection.Config == nil {
+	if connection == nil || connection.GetConfig() == nil {
 		return equinixConfig{}
 	}
-	config, _ := connection.Config.(equinixConfig)
+	config, _ := connection.GetConfig().(equinixConfig)
 	return config
 }

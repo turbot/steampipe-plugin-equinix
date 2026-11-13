@@ -10,15 +10,15 @@ import (
 
 	metal "github.com/packethost/packngo"
 
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin/transform"
 )
 
-func connect(_ context.Context, d *plugin.QueryData) (*metal.Client, error) {
+func connect(ctx context.Context, d *plugin.QueryData) (*metal.Client, error) {
 
 	// Load connection from cache, which preserves throttling protection etc
 	cacheKey := "equinix_metal"
-	if cachedData, ok := d.ConnectionManager.Cache.Get(cacheKey); ok {
+	if cachedData, ok := d.ConnectionCache.Get(ctx, cacheKey); ok {
 		return cachedData.(*metal.Client), nil
 	}
 
@@ -40,7 +40,7 @@ func connect(_ context.Context, d *plugin.QueryData) (*metal.Client, error) {
 	conn := metal.NewClientWithAuth("steampipe", token, http.DefaultClient)
 
 	// Save to cache
-	d.ConnectionManager.Cache.Set(cacheKey, conn)
+	_ = d.ConnectionCache.Set(ctx, cacheKey, conn)
 
 	return conn, nil
 }
@@ -57,8 +57,8 @@ func resourceInterfaceDescription(key string) string {
 	return ""
 }
 
-func isNotFoundError(notFoundErrors []string) plugin.ErrorPredicate {
-	return func(err error) bool {
+func isNotFoundError(notFoundErrors []string) plugin.ErrorPredicateWithContext {
+	return func(_ context.Context, _ *plugin.QueryData, _ *plugin.HydrateData, err error) bool {
 		errMsg := err.Error()
 		for _, msg := range notFoundErrors {
 			if strings.Contains(errMsg, msg) {

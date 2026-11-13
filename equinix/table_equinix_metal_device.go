@@ -5,9 +5,9 @@ import (
 
 	metal "github.com/packethost/packngo"
 
-	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v6/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin/transform"
 )
 
 func tableEquinixMetalDevice(ctx context.Context) *plugin.Table {
@@ -19,9 +19,9 @@ func tableEquinixMetalDevice(ctx context.Context) *plugin.Table {
 			Hydrate:       listDevice,
 		},
 		Get: &plugin.GetConfig{
-			KeyColumns:        plugin.SingleColumn("id"),
-			Hydrate:           getDevice,
-			ShouldIgnoreError: isNotFoundError([]string{"404 Not found"}),
+			KeyColumns:   plugin.SingleColumn("id"),
+			Hydrate:      getDevice,
+			IgnoreConfig: &plugin.IgnoreConfig{ShouldIgnoreErrorFunc: isNotFoundError([]string{"404 Not found"})},
 		},
 		Columns: []*plugin.Column{
 			// Top columns
